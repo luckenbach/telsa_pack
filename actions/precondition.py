@@ -1,5 +1,6 @@
 from st2common.runners.base_action import Action
 from util import get_context, get_car
+from datetime import datetime
 
 
 class preconditionCar(Action):
@@ -10,10 +11,11 @@ class preconditionCar(Action):
         else:
             return False, 'User not defined'
         c = get_car(car_name, t)
-        # TODO: Will come back and correct this once I have the code working below :)
-        leave_time = 2000
+        l_time = datetime.fromtimestamp(leave_time)
+        # Telsa API wants minutes past midnight
+        d_time = int((l_time - l_time.replace(hour=0, minute=0, second=0)).total_seconds() / 60)
         if c:
-            prep = c.command('SCHEDULED_DEPARTURE', enable=True, preconditioning_enabled=True, departure_time=leave_time)
+            prep = c.command('SCHEDULED_DEPARTURE', enable=True, preconditioning_enabled=True, departure_time=d_time)
             if prep:
                 return True, 'preconditioning'
             else:
