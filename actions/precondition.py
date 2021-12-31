@@ -1,9 +1,8 @@
-from st2common.runners.base_action import Action
-from util import get_context, get_car
+from lib.action import BaseAction
 from datetime import datetime
 
 
-class preconditionCar(Action):
+class preconditionCar(BaseAction):
     def _run(self, *args, **kwargs):
         leave_time = kwargs.get('leave_time', None)
         if leave_time:
