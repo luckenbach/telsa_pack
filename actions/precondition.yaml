@@ -1,0 +1,16 @@
+---
+name: "precondition"
+runner_type: "python-script"
+enabled: true
+entry_point: "precondition.py"
+parameters:
+  car_name:
+    type: "string"
+    description: "The name of the car we are to precondition"
+    position: 0
+    required: false
+  leave_time:
+    type: "integer"
+    description: "Unix epoch timestamp of when you want to leave"
+    position: 1
+    required: true

@@ -1,0 +1,11 @@
+---
+name: "honk"
+runner_type: "python-script"
+enabled: true
+entry_point: "honk.py"
+parameters:
+  car_name:
+    type: "string"
+    description: "What car we gonna be honkin?"
+    position: 0
+    required: false

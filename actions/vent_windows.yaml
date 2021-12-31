@@ -1,0 +1,11 @@
+---
+name: "vent_windows"
+runner_type: "python-script"
+enabled: true
+entry_point: "vent_windows.py"
+parameters:
+  car_name:
+    type: "string"
+    description: "The name of teh car we are to interact with"
+    position: 0
+    required: false

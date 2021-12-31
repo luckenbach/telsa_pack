@@ -1,7 +1,7 @@
 # tesla_pack Integration Pack
 
 ## Configuration
-TODO: Describe configuration
+setup users email in config and set your api token in the KV under tesla_pack_token :)
 
 
 # Sensors
