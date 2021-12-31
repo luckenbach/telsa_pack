@@ -8,7 +8,7 @@ parameters:
     type: "string"
     description: "The name of the car we are to precondition"
     position: 0
-    requried: false
+    required: false
   leave_time:
     type: "integer"
     description: "Unix epoch timestamp of when you want to leave"
