@@ -1,9 +1,8 @@
-from lib.actions import BaseAction
+from lib.action import BaseAction
 
 class ventWindows(BaseAction):
     def run(self):
-        c = self.car
-        vent = c.command('WINDOW_CONTROL', command='vent', lat=0, lon=0)
+        vent = self.car.command('WINDOW_CONTROL', command='vent', lat=0, lon=0)
         if vent:
             return True, 'Vented'
         else:
