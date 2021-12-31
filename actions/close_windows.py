@@ -1,5 +1,5 @@
 from st2common.runners.base_action import Action
-from util import get_context
+from util import get_context, get_car
 
 
 class closeWindows(Action):
@@ -9,13 +9,12 @@ class closeWindows(Action):
             t = get_context(user=user)
         else:
             return False, 'User not defined'
-        if car_name:
-            c = next(item for item in t.vehicle_list() if item["display_name"].lower() == car_name.lower())
-        else:
-            c = t.vehicle_list().pop
+        c = get_car(car_name, t)
         if c:
             vent = c.command('WINDOW_CONTROL', command='close', lat=0, lon=0)
             if vent:
                 return True, 'Closed'
             else:
                 return False, 'Failed'
+        else:
+            return False, 'Could not find car!'
