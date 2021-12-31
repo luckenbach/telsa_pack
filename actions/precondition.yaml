@@ -1,6 +1,6 @@
 ---
 name: "precondition"
-runnter_type: "python-script"
+runner_type: "python-script"
 enabled: true
 entry_point: "precondition.py"
 parameters:
