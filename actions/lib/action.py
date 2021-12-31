@@ -9,8 +9,18 @@ class BaseAction(Action):
         super(BaseAction, self).__init__(config)
         self.client = Client()
         self.user = config.get('tesla_pack_user', None)
-        def t_loader(): return json.loads(self.client.keys.get_by_name(name='tesla_pack_token', decrypt=True).value)
-        self.t = Tesla(self.user, cache_loader=t_loader)
+
+        # This is how we get the token cache out of the kv store
+        def t_loader():
+            return json.loads(self.client.keys.get_by_name(name='tesla_pack_token', decrypt=True).value)
+
+        # This is how we put it back should it get refresh
+        def t_dumper(token):
+            new_t = self.client.keys.get_by_name(name='tesla_pack_token')
+            new_t.value = token
+            self.client.keys.update(new_t)
+
+        self.t = Tesla(self.user, cache_loader=t_loader, cache_dumper=t_dumper)
 
     def _run(self, *args, **kwargs):
         raise NotImplementedError
