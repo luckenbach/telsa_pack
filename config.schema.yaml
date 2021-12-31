@@ -1,1 +1,5 @@
 ---
+  tesla_pack_user:
+    description: "Username for interacting with Tesla API"
+    type: "string"
+    required: true
