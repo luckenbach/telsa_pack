@@ -16,8 +16,8 @@ class BaseAction(Action):
 
         # This is how we put it back should it get refresh
         def t_dumper(token):
-            new_t = self.client.keys.get_by_name(name='tesla_pack_token')
-            new_t.value = token
+            new_t = self.client.keys.get_by_name(name='tesla_pack_token', decrypt=True)
+            new_t.value = json.dumps(token)
             self.client.keys.update(new_t)
 
         self.t = Tesla(self.user, cache_loader=t_loader, cache_dumper=t_dumper)
