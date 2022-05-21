@@ -1,3 +1,4 @@
+import teslapy
 from teslapy import Tesla
 from st2common.runners.base_action import Action
 from st2client.client import Client
@@ -9,6 +10,7 @@ class BaseAction(Action):
         super(BaseAction, self).__init__(config)
         self.client = Client()
         self.user = config.get('tesla_pack_user', None)
+        self.car = None
 
         # This is how we get the token cache out of the kv store
         def t_loader():
@@ -35,4 +37,7 @@ class BaseAction(Action):
                 pass
             else:
                 raise Exception
-        return True, self._run(*args, **kwargs)
+        try:
+            return True, self._run(*args, **kwargs)
+        except teslapy.HTTPError:
+            return False, 'HTTP error when dealing with Tesla API'
