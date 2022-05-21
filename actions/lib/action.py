@@ -38,7 +38,7 @@ class BaseAction(Action):
             else:
                 raise Exception
         try:
-            self.sync_wake_up()
+            self.car.sync_wake_up()
             return True, self._run(*args, **kwargs)
         except teslapy.HTTPError:
             return False, 'HTTP error when dealing with Tesla API'
