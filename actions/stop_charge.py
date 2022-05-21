@@ -1,12 +1,12 @@
 from lib.action import BaseAction
 from
 
-class startCharge(BaseAction):
+class stopCharge(BaseAction):
     def _run(self, *args, **kwargs):
         try:
-            charge_start = self.car.command('START_CHARGE')
+            charge_stop = self.car.command('STOP_CHARGE')
         except teslapy.HTTPError:
-        if charge_start:
-            return True, 'Started'
+        if charge_stop:
+            return True, 'Stopped'
         else:
             return False, 'Failed'

@@ -1,0 +1,11 @@
+---
+name: "stop_charge"
+runner_type: "python-script"
+enabled: true
+entry_point: "stop_charge.py"
+parameters:
+  car_name:
+    type: "string"
+    description: "The name of the car we are to stop charging"
+    position: 0
+    required: false
